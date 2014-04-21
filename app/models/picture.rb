@@ -10,6 +10,7 @@ class Picture < ActiveRecord::Base
 									  :s3_credentials => "#{Rails.root}/config/s3.yml",
 									  :storage => :s3
 
+
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   validates :title, presence: true, uniqueness: true, length: { maximum: 50 }
 end
