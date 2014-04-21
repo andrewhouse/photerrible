@@ -1,0 +1,16 @@
+<h1><%= current_user.first_name %>'s Profile</h1>
+<br />
+<h3>First Name: <%= current_user.first_name %></h3>
+<h3>Last Name: <%= current_user.last_name %></h3>
+<br />
+<h4>Email: <%= current_user.email %></h4>
+<br />
+<%= image_tag current_user.avatar.url(:medium) %>
+
+<br />
+<h2>Picture's Posted by <%= current_user.first_name %></h2>
+<% Picture.all.reverse.each do |picture| %>
+<% if picture.user_id == current_user.id %>
+<%= image_tag picture.image.url(:thumb) %>
+<% end %>
+<% end %>

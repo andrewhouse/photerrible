@@ -1,0 +1,20 @@
+<%- model_class = Picture -%>
+<div class="page-header">
+  <h1>All Pictures</h1>
+</div>
+
+  <% @pictures.reverse.each do |picture| %>
+  <div class="index-body">
+
+  <h3> <%= picture.title %> </h3>
+  <h5> <%= picture.caption %> </h5>
+  <%= link_to (image_tag picture.image.url(:medium)), "/pictures/#{picture.slug}" %>
+  <hr />
+  </div>
+
+  <% end %>
+<% if user_signed_in? %>
+  <%= link_to t('.new', :default => t("helpers.links.new")),
+              new_picture_path,
+              :class => 'btn btn-primary' %>
+<% end %>
