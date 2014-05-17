@@ -1,10 +1,11 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
+  before_action :paginate
 
   # GET /pictures
   # GET /pictures.json
   def index
-    @pictures = Picture.all   
+    @pictures = Picture.all.paginate(:page => params[:page]).per_page(5)   
   end
 
   # GET /pictures/1
@@ -72,6 +73,10 @@ class PicturesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_picture
       @picture = Picture.friendly.find(params[:id])
+    end
+
+    def paginate
+      @pag = Picture.paginate(:page => params[:page])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

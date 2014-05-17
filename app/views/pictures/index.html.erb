@@ -2,7 +2,6 @@
 <div class="page-header">
   <h1>All Pictures</h1>
 </div>
-
   <% @pictures.reverse.each do |picture| %>
   <div class="index-body">
 
@@ -13,6 +12,8 @@
   </div>
 
   <% end %>
+  <%= will_paginate @pictures %>
+
 <% if user_signed_in? %>
   <%= link_to t('.new', :default => t("helpers.links.new")),
               new_picture_path,
